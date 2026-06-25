@@ -1,9 +1,9 @@
 ---
-title: "Docs"
-description: "Browse guides and reference documentation that explain how to use this site’s features, configure Doks, and publish clear, user-focused content."
+title: "Contabo Knowledge Base"
+description: "Product documentation for Contabo cloud infrastructure."
 summary: ""
-date: 2023-09-07T16:12:03+02:00
-lastmod: 2023-09-07T16:12:03+02:00
+date: 2026-06-25
+lastmod: 2026-06-25
 draft: false
 weight: 999
 toc: true
