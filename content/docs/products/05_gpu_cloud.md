@@ -1,3 +1,14 @@
+---
+title: "GPU Cloud"
+description: "Contabo's GPU Cloud provides dedicated and virtualized GPU server instances powered by enterprise-grade NVIDIA hardware."
+lead: "Contabo's flagship product — maximum resources at minimum cost."
+date: 2026-06-25
+lastmod: 2026-06-25
+draft: false
+weight: 50
+toc: true
+---
+
 # GPU Cloud — Product Documentation
 
 > **Product:** GPU Cloud  
