@@ -1,3 +1,14 @@
+---
+title: "Cloud VDS"
+description: "KVM-based virtual private servers with AMD EPYC CPUs and unlimited traffic."
+lead: "Contabo's flagship product — maximum resources at minimum cost."
+date: 2026-06-25
+lastmod: 2026-06-25
+draft: false
+weight: 30
+toc: true
+---
+
 # Cloud VDS — Product Documentation
 
 > **Product:** Cloud VDS (Virtual Dedicated Servers)  
