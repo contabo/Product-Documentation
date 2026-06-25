@@ -11,5 +11,5 @@ params:
 ---
 
 Contabo API reference:
-[about reference](https://api.contabo.com/)
+[API Reference](https://api.contabo.com/)
 
