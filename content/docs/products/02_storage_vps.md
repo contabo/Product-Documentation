@@ -5,7 +5,7 @@ lead: "Contabo's flagship product — maximum resources at minimum cost."
 date: 2026-06-25
 lastmod: 2026-06-25
 draft: false
-weight: 10
+weight: 20
 toc: true
 ---
 
