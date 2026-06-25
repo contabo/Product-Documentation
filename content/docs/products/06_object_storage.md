@@ -1,3 +1,14 @@
+---
+title: "CObject Storage"
+description: "Contabo Object Storage is an S3-compatible cloud storage service built on a Ceph cluster following Red Hat production guidance."
+lead: "Contabo's flagship product — maximum resources at minimum cost."
+date: 2026-06-25
+lastmod: 2026-06-25
+draft: false
+weight: 60
+toc: true
+---
+
 # Object Storage — Product Documentation
 
 > **Product:** Object Storage  
