@@ -1,3 +1,14 @@
+---
+title: "Cloud VPS"
+description: "KVM-based virtual private servers with AMD EPYC CPUs and unlimited traffic."
+lead: "Contabo's flagship product — maximum resources at minimum cost."
+date: 2026-06-25
+lastmod: 2026-06-25
+draft: false
+weight: 10
+toc: true
+---
+
 # Cloud VPS — Product Documentation
 
 > **Product:** Cloud VPS (Virtual Private Servers)  
