@@ -1,3 +1,14 @@
+---
+title: "Dedicated Server"
+description: "Full dedicated Hardware Power."
+lead: "Contabo's flagship product — maximum resources at minimum cost."
+date: 2026-06-25
+lastmod: 2026-06-25
+draft: false
+weight: 40
+toc: true
+---
+
 # Dedicated Servers — Product Documentation
 
 > **Product:** Dedicated Servers (Bare Metal)  
