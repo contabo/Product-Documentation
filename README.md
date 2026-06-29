@@ -36,6 +36,7 @@ contabo-docs/
 ├── content/
 │   └── docs/
 │       ├── _index.md           # Docs landing page
+│       └── guides              # Tutorials and Product-Guides can be added here
 │       └── products/
 │           ├── _index.md       # Products section index
 │           ├── 01_cloud_vps.md
@@ -44,12 +45,15 @@ contabo-docs/
 │           ├── 04_dedicated_servers.md
 │           ├── 05_gpu_cloud.md
 │           └── 06_object_storage.md
+│       └── reference          # Links to documentation that is hosted in different places, e.g. API Reference & Terraform
+│           └── API.md          
+│           └── Terraform.md
 ├── static/                     # Static assets served as-is (favicon, etc.)
 ├── package.json
 └── README.md
 ```
 
-The files under `content/docs/products/` are the authoritative source for all product documentation. Everything else in the repo is theme infrastructure — you will rarely need to touch it.
+The files under `content/docs/products/`, `content/docs/guides/` and `content/docs/reference/` are the authoritative source for all product documentation. Everything else in the repo is theme infrastructure — you will rarely need to touch it.
 
 ---
 
