@@ -85,7 +85,7 @@ Pushing any commit to the `main` branch triggers the GitHub Actions workflow def
 
 <details>
 <Summary>
-  
+```
   # Sample workflow for building and deploying a Hugo site to GitHub Pages
 name: Deploy Hugo site to Pages
 
@@ -160,6 +160,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+```
 </Summary>
 </details>
 
