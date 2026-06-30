@@ -85,7 +85,7 @@ Pushing any commit to the `main` branch triggers the GitHub Actions workflow def
 
 
 <details>
-  <summary>Click to See hugo.yml (2026-06-30)</summary>
+  <summary>.github/workflows/hugo.yml (2026-06-30)</summary>
 
 ```
   # Sample workflow for building and deploying a Hugo site to GitHub Pages
