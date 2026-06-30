@@ -94,10 +94,9 @@ GitHub Actions runner
   4. Publishes ./public/ to the gh-pages branch
        │
        ▼
-GitHub Pages serves the site at [https://contabo.github.io/contabo-docs/](https://contabo.github.io/Product-Documentation/)
+GitHub Pages serves the site
 ```
-
-The full workflow file is at `.github/workflows/hugo.yml`:
+Site will be accesible at [https://contabo.github.io/contabo-docs/](https://contabo.github.io/Product-Documentation/)
 
 
 **Enabling GitHub Pages for the first time:**
