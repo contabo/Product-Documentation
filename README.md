@@ -83,9 +83,11 @@ hugo --minify --gc
 
 Pushing any commit to the `main` branch triggers the GitHub Actions workflow defined in `.github/workflows/hugo.yml`. No manual steps are required.
 
+
 <details>
   <summary>Click to See hugo.yml (2026-06-30)</summary>
 
+```
   # Sample workflow for building and deploying a Hugo site to GitHub Pages
 name: Deploy Hugo site to Pages
 
@@ -160,7 +162,9 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
-  
+
+```
+
 </details>
 
 ```
