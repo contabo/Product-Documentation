@@ -96,7 +96,7 @@ GitHub Actions runner
        ▼
 GitHub Pages serves the site
 ```
-Site will be accesible at [https://contabo.github.io/contabo-docs/](https://contabo.github.io/Product-Documentation/)
+Site will be accesible at [https://contabo.github.io/Product-Documentation/](https://contabo.github.io/Product-Documentation/)
 
 
 **Enabling GitHub Pages for the first time:**
