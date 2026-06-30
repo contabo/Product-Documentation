@@ -1,4 +1,4 @@
-title = "Contabo Knowledge Base"
+title = "Contabo Product Documentation"
 baseurl = "https://contabo.github.io/Product-Documentation/"
 disableAliases = true
 disableHugoGeneratorInject = true
