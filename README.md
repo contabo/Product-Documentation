@@ -1,4 +1,4 @@
-# Contabo Knowledge Base
+# Contabo Product Documentation
 
 Product documentation for [Contabo](https://contabo.com) cloud infrastructure — built with [Hugo Doks](https://getdoks.org) and published automatically to GitHub Pages on every push to `main`.
 
