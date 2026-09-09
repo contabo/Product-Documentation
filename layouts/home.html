@@ -1,57 +1,138 @@
+{{/* CCP-styled home page — matches Customer Control Panel visual language.
+     Keeps Doks block structure (main / sidebar-prefooter / sidebar-footer)
+     so the theme's wrapping layout still works correctly. */}}
+
 {{ define "main" }}
-<section class="section container-fluid mt-n3 pb-3">
-  <div class="row justify-content-center">
-    <div class="col-lg-12 text-center">
-      <h1>{{ .Title }}</h1>
-    </div>
-    <div class="col-lg-9 col-xl-8 text-center">
-      <p class="lead">{{ .Params.lead | safeHTML }}</p>
-      <a class="btn btn-primary btn-cta rounded-pill btn-lg my-3" href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}guides/example-guide/" role="button">{{ i18n "get_started" }}</a>
-      {{ .Content }}
+<section class="ccp-hero">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+
+        {{/* Contabo logo mark above the headline */}}
+        <img
+          src="/contabo-logo.svg"
+          alt="Contabo"
+          height="36"
+          class="mb-4 d-block mx-auto"
+          style="height:36px; width:auto;"
+        >
+
+        <h1>{{ .Title }}</h1>
+
+        {{ with .Params.lead }}
+        <p class="lead">{{ . | safeHTML }}</p>
+        {{ end }}
+
+        <a
+          class="btn btn-primary btn-cta my-3"
+          href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}guides/example-guide/"
+          role="button"
+        >{{ i18n "get_started" }}</a>
+
+        {{/* optional additional page content */}}
+        {{ with .Content }}<div class="mt-2">{{ . }}</div>{{ end }}
+
+      </div>
     </div>
   </div>
 </section>
 {{ end }}
 
+
 {{ define "sidebar-prefooter" }}
-  {{ if site.Params.doks.backgroundDots -}}
-  <div class="d-flex justify-content-start">
-    <div class="bg-dots"></div>
-  </div>
-  {{ end -}}
   {{ if eq $.Site.Language.LanguageName "English" }}
-  <section class="section section-md section-features">
+  <section class="section section-features">
     <div class="container">
-      <div class="row justify-content-center text-center">
-        <div class="col-lg-5">
-          <h2 class="h4">Update content</h2>
-          <p>Edit <code>content/_index.md</code> to see this page change.</p>
+      <div class="row g-3 justify-content-center">
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="feature-card-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" aria-hidden="true"
+                     viewBox="0 0 24 24" fill="none" stroke="#246db7"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                </svg>
+                <h2 class="h6 mb-0">Cloud VPS &amp; VDS</h2>
+              </div>
+              <p class="mb-0">Guides for provisioning, managing, and scaling your virtual private and dedicated servers.</p>
+              <a href="/docs/products/cloud-vps/" class="stretched-link"></a>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Add new content</h2>
-          <p>Add Markdown files to <code>content</code> to create new pages.</p>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="feature-card-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" aria-hidden="true"
+                     viewBox="0 0 24 24" fill="none" stroke="#246db7"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                  <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/>
+                  <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/>
+                </svg>
+                <h2 class="h6 mb-0">Object Storage</h2>
+              </div>
+              <p class="mb-0">S3-compatible object storage — how to create buckets, manage access, and integrate with your stack.</p>
+              <a href="/docs/products/object-storage/" class="stretched-link"></a>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Configure your site</h2>
-          <p>Edit your config in <code>config/_default/params.toml</code>.</p>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="feature-card-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" aria-hidden="true"
+                     viewBox="0 0 24 24" fill="none" stroke="#246db7"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+                <h2 class="h6 mb-0">API &amp; Terraform</h2>
+              </div>
+              <p class="mb-0">Automate your infrastructure using the Contabo API and the official Terraform provider.</p>
+              <a href="/docs/reference/api-reference/" class="stretched-link"></a>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Read the docs</h2>
-          <p>Learn more in the <a href="https://getdoks.org/">Docs</a>.</p>
+
+        <div class="col-sm-6 col-lg-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="feature-card-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" aria-hidden="true"
+                     viewBox="0 0 24 24" fill="none" stroke="#246db7"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+                </svg>
+                <h2 class="h6 mb-0">Guides</h2>
+              </div>
+              <p class="mb-0">Step-by-step tutorials for common tasks — from first login to advanced server configuration.</p>
+              <a href="/docs/guides/example-guide/" class="stretched-link"></a>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
   {{ end }}
 {{ end }}
 
+
 {{ define "sidebar-footer" }}
 {{ if site.Params.doks.sectionFooter -}}
-<section class="section section-md container-fluid bg-light">
+<section class="section section-md container-fluid" style="background-color:var(--ccp-gray-100,#f2f3f7);border-top:1px solid var(--ccp-border,#e7ecf1);">
   <div class="row justify-content-center text-center">
     <div class="col-lg-7">
-      <h2 class="mt-2">Start building with Doks today</h2>
-      <a class="btn btn-primary rounded-pill px-4 my-2" href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}prologue/introduction/" role="button">{{ i18n "get-started" }}</a>
+      <h2 class="mt-2" style="font-size:1.25rem;">Ready to get started?</h2>
+      <p class="text-muted mb-3">Browse products, read guides, or jump straight into the API reference.</p>
+      <a class="btn btn-primary btn-cta px-4 my-2"
+         href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}guides/example-guide/"
+         role="button">{{ i18n "get_started" }}</a>
     </div>
   </div>
 </section>
