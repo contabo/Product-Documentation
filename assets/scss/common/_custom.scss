@@ -1,1 +1,789 @@
-// Put your custom SCSS code here
+// ============================================================
+// CCP Visual Restyle — custom CSS layer
+// Loaded after Bootstrap + Doks base styles.
+// Targets Doks HTML structure (Bootstrap navbar, .doks-sidebar,
+// .docs-links, .btn-*, .card, etc.) and maps to CCP design tokens.
+// ============================================================
+
+
+// ── 1. CCP CSS Custom Properties ────────────────────────────
+// Re-export primitives as CSS vars so they're available at
+// runtime (dark-mode overrides, component hover states, etc.)
+
+:root {
+  // Primitives
+  --ccp-blue-600:  #246db7;
+  --ccp-blue-400:  #349fe4;
+  --ccp-blue-700:  #194788;
+  --ccp-blue-800:  #16416e;
+  --ccp-blue-500:  #5ac8f5;  // dark-mode primary
+  --ccp-blue-300:  #7bd3f7;  // dark-mode primary hover
+  --ccp-gray-50:   #f9f9fb;
+  --ccp-gray-100:  #f2f3f7;
+  --ccp-gray-200:  #e7ecf1;
+  --ccp-gray-450:  #8890af;
+  --ccp-gray-500:  #acb6c5;
+  --ccp-gray-700:  #6f798b;
+  --ccp-gray-900:  #414752;
+  --ccp-white:     #ffffff;
+  --ccp-dark-bg:   #242526;
+  --ccp-dark-surf: #3a3b3c;
+  --ccp-dark-sec:  #b0b3bb;
+
+  // Semantic surface
+  --ccp-surface-page:    #f2f3f7;
+  --ccp-surface-card:    #ffffff;
+  --ccp-surface-nav:     #ffffff;
+  --ccp-surface-topbar:  #ffffff;
+
+  // Brand
+  --ccp-brand:       #246db7;
+  --ccp-brand-hover: #349fe4;
+  --ccp-brand-dark:  #5ac8f5;
+
+  // Borders
+  --ccp-border: #e7ecf1;
+
+  // Elevation
+  --ccp-shadow-nav:
+    0px 3px 8px  rgba(0,0,0,.05),
+    0px 0px 3px  rgba(0,0,0,.05),
+    0px 1px 3px  rgba(0,0,0,.05);
+  --ccp-shadow-card:
+    0px 2px 2.5px rgba(0,0,0,.15),
+    0px 10px 12px rgba(0,0,0,.20),
+    0px 0px  .5px rgba(0,0,0,.10);
+
+  // Shell dimensions
+  --ccp-topbar-h:       65px;
+  --ccp-sidebar-w:      249px;
+
+  // Typography
+  --ccp-font: "Inter", system-ui, -apple-system, sans-serif;
+  --ccp-radius-xs:   4px;
+  --ccp-radius-s:    5px;
+  --ccp-radius-m:    8px;
+  --ccp-radius-l:   12px;
+  --ccp-radius-pill: 24px;
+
+  // Status / ribbon
+  --ccp-success-bkg:    #e1f6e7;
+  --ccp-success-border: #31a151;
+  --ccp-success-text:   #31a151;
+  --ccp-warning-bkg:    #fefefb;
+  --ccp-warning-border: #ffcc00;
+  --ccp-warning-text:   #d08700;
+  --ccp-error-bkg:      #f4dbdb;
+  --ccp-error-border:   #e65858;
+  --ccp-error-text:     #e65858;
+  --ccp-info-bkg:       #f1fafe;
+  --ccp-info-border:    #66ccf3;
+  --ccp-info-text:      #246db7;
+}
+
+
+// ── 2. Base typography ───────────────────────────────────────
+
+body {
+  font-family: var(--ccp-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // Sticky footer: push footer to the viewport bottom when content is short
+  display:        flex;
+  flex-direction: column;
+  min-height:     100vh;
+  min-height:     100dvh; // modern browsers — accounts for mobile chrome bar
+}
+
+// Footer anchored to the bottom of the flex column
+footer.footer {
+  margin-top: auto;
+}
+
+// Headings: tighter tracking, CCP weight & color
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--ccp-font);
+  font-weight: 600;
+  color: var(--ccp-gray-900);
+  line-height: 1.2;
+}
+
+// ── 3. Navbar / Top bar ─────────────────────────────────────
+// Target: <header class="navbar navbar-expand-lg">
+
+header.navbar {
+  background-color: var(--ccp-surface-topbar);
+  border-bottom: 1px solid var(--ccp-border);
+  box-shadow: var(--ccp-shadow-nav);
+  min-height: var(--ccp-topbar-h);
+  padding-top:    0;
+  padding-bottom: 0;
+
+  // inner container fills full height
+  > .container-fluid {
+    min-height: var(--ccp-topbar-h);
+    align-items: center;
+  }
+}
+
+// Brand: show CCP logo SVG, hide text
+.navbar-brand {
+  display:            inline-flex;
+  align-items:        center;
+  font-size:          0;            // hide text
+  line-height:        1;
+  min-width:          160px;
+  height:             32px;
+  background-image:   url('/contabo-logo.svg');
+  background-repeat:  no-repeat;
+  background-size:    contain;
+  background-position: left center;
+  padding:            0;
+  margin-right:       1.5rem;
+
+  &:hover, &:focus { opacity: .85; }
+}
+
+// Nav links — CCP gray-900 base, blue on hover/active
+.navbar .nav-link {
+  color:       var(--ccp-gray-900);
+  font-weight: 500;
+  font-size:   0.875rem;
+  transition:  color .15s ease;
+
+  &:hover, &:focus { color: var(--ccp-brand); }
+  &.active          { color: var(--ccp-brand); font-weight: 600; }
+}
+
+.navbar .btn-link {
+  color: var(--ccp-gray-900);
+  &:hover { color: var(--ccp-brand); }
+}
+
+// Search icon in navbar — CCP blue
+#searchToggleDesktop svg,
+#searchToggleMobile svg {
+  stroke: var(--ccp-brand);
+}
+
+// Color-mode toggle — use CCP colors
+#buttonColorMode svg {
+  stroke: var(--ccp-gray-700);
+  &:hover { stroke: var(--ccp-brand); }
+}
+
+
+// ── 4. Docs Sidebar ─────────────────────────────────────────
+// Target: aside.doks-sidebar > nav#doks-docs-nav > .docs-links
+
+@media (min-width: 992px) {
+  .docs-sidebar {
+    background-color: var(--ccp-surface-nav);
+    border-right:     1px solid var(--ccp-border) !important;
+    flex: 0 0 var(--ccp-sidebar-w);
+    max-width: var(--ccp-sidebar-w);
+  }
+}
+
+.docs-links {
+  padding: 1rem 0;
+
+  // Section headings (details > summary / h3.sidebar-link)
+  h3, .h3,
+  details > summary {
+    font-family:    var(--ccp-font);
+    font-size:      0.6875rem;   // 11px — CCP nav-category size
+    font-weight:    600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color:          var(--ccp-brand);
+    padding:        0.375rem 1.5rem 0.25rem;
+    margin-top:     1rem;
+    margin-bottom:  0.125rem;
+    cursor:         pointer;
+    list-style:     none;
+
+    &::-webkit-details-marker { display: none; }
+    &::marker               { display: none; }
+  }
+
+  // Nav links
+  a.docs-link,
+  .btn-toggle-nav a,
+  ul.list-nested a,
+  a {
+    font-size:      0.875rem;   // 14px — CCP nav-item size
+    font-weight:    400;
+    color:          var(--ccp-gray-900);
+    padding:        0.3rem 1.5rem;
+    display:        block;
+    border-left:    3px solid transparent;
+    text-decoration: none;
+    transition:     color .12s ease, border-color .12s ease,
+                    background-color .12s ease;
+
+    &:hover {
+      color:            var(--ccp-brand);
+      background-color: rgba(36, 109, 183, .06);
+      border-left-color: rgba(36, 109, 183, .3);
+    }
+
+    // Active page
+    &.active, &[aria-current="page"] {
+      color:             var(--ccp-brand);
+      font-weight:       600;
+      border-left-color: var(--ccp-brand);
+      background-color:  rgba(36, 109, 183, .08);
+    }
+  }
+
+  // Nested list indent
+  .list-nested {
+    padding-left: 0.5rem;
+  }
+}
+
+
+// ── 5. Table of Contents (right-hand side) ──────────────────
+
+#toc a.active,
+.page-links a.active {
+  color:       var(--ccp-brand) !important;
+  font-weight: 600;
+}
+
+.page-links a:hover { color: var(--ccp-brand); }
+
+
+// ── 6. Buttons ──────────────────────────────────────────────
+// Restyle Bootstrap .btn-primary to CCP pill button
+
+.btn {
+  font-family:    var(--ccp-font);
+  font-weight:    600;
+  border-radius:  var(--ccp-radius-pill);
+  font-size:      1rem;
+  letter-spacing: 0;
+  transition:     background-color .15s ease, border-color .15s ease,
+                  color .15s ease, box-shadow .15s ease;
+}
+
+.btn-primary {
+  background-color: var(--ccp-brand);
+  border-color:     var(--ccp-brand);
+  color:            #fff;
+
+  &:hover  {
+    background-color: var(--ccp-brand-hover);
+    border-color:     var(--ccp-brand-hover);
+  }
+  &:active, &.active {
+    background-color: var(--ccp-blue-700);
+    border-color:     var(--ccp-blue-700);
+  }
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba(25, 71, 136, 0.3);
+  }
+  &:disabled { opacity: .5; }
+}
+
+.btn-outline-primary {
+  border-color: var(--ccp-brand);
+  color:        var(--ccp-brand);
+  background:   transparent;
+
+  &:hover {
+    background-color: rgba(36, 109, 183, .06);
+    border-color:     var(--ccp-brand-hover);
+    color:            var(--ccp-brand-hover);
+  }
+}
+
+// CTA button (used on home page)
+.btn-cta {
+  padding: 0.5rem 1.5rem;
+  font-size:      1rem;
+  font-weight:    600;
+  border-radius:  var(--ccp-radius-pill);
+}
+
+// Small / inline buttons
+.btn-sm {
+  height:       30px;
+  padding:      0 0.75rem;
+  font-size:    0.8125rem;
+  border-radius: var(--ccp-radius-pill);
+}
+
+
+// ── 7. Cards ────────────────────────────────────────────────
+
+.card {
+  background-color: var(--ccp-surface-card);
+  border:           1px solid var(--ccp-border);
+  border-radius:    var(--ccp-radius-m);
+  box-shadow:       none;
+  transition:       border-color .15s ease, box-shadow .15s ease;
+
+  &:hover { box-shadow: var(--ccp-shadow-nav); }
+}
+
+.card-header {
+  background-color: var(--ccp-surface-card);
+  border-bottom:    1px solid var(--ccp-border);
+  font-weight:      600;
+}
+
+.card-footer {
+  background-color: var(--ccp-surface-card);
+  border-top:       1px solid var(--ccp-border);
+}
+
+// Feature cards on home page
+.section-features .card {
+  border-radius: var(--ccp-radius-m);
+  border:        1px solid var(--ccp-border);
+  background:    var(--ccp-surface-card);
+  height:        100%;
+
+  .card-body {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  p { color: var(--ccp-gray-700); font-size: 0.8125rem; line-height: 1.5; }
+}
+
+// Icon + title inline row used in each feature card
+.feature-card-header {
+  display:     flex;
+  align-items: center;
+  gap:         0.625rem;
+  margin-bottom: 1rem;
+
+  svg { flex-shrink: 0; }
+
+  h2 {
+    font-size:   0.9375rem; // 15px — slightly larger than body, clearly a title
+    font-weight: 600;
+    line-height: 1.2;
+    margin-top: 0;
+    color: var(--ccp-brand);
+  }
+}
+
+
+// ── 8. Links ────────────────────────────────────────────────
+
+a {
+  color:           var(--ccp-brand);
+  text-decoration: none;
+  &:hover { color: var(--ccp-brand-hover); text-decoration: underline; }
+}
+
+
+// ── 9. Alerts / Callouts → CCP Ribbon style ─────────────────
+// Doks uses .alert-* (Bootstrap alerts). Restyle as left-bordered ribbons.
+
+.alert {
+  border-left-width: 3px;
+  border-left-style: solid;
+  border-radius:     var(--ccp-radius-m);
+  font-size:         0.875rem;
+  border-top:        none;
+  border-right:      none;
+  border-bottom:     none;
+}
+
+.alert-primary, .alert-info, .alert-doks {
+  background-color:  var(--ccp-info-bkg);
+  border-left-color: var(--ccp-info-border);
+  color:             var(--ccp-gray-900);
+
+  a { color: var(--ccp-brand); }
+}
+
+.alert-success {
+  background-color:  var(--ccp-success-bkg);
+  border-left-color: var(--ccp-success-border);
+  color:             var(--ccp-gray-900);
+
+  a { color: var(--ccp-success-text); }
+}
+
+.alert-warning {
+  background-color:  var(--ccp-warning-bkg);
+  border-left-color: var(--ccp-warning-border);
+  color:             var(--ccp-gray-900);
+}
+
+.alert-danger {
+  background-color:  var(--ccp-error-bkg);
+  border-left-color: var(--ccp-error-border);
+  color:             var(--ccp-gray-900);
+}
+
+
+// ── 10. Code blocks ─────────────────────────────────────────
+
+// Inline code
+code {
+  font-size:        0.8125rem;
+  color:            var(--ccp-brand);
+  background-color: rgba(36, 109, 183, .08);
+  padding:          0.1em 0.35em;
+  border-radius:    var(--ccp-radius-xs);
+}
+
+// Fenced code blocks (Expressive Code / highlight.js output)
+pre {
+  background-color: #f9f9fb;
+  border:           1px solid var(--ccp-border);
+  border-radius:    var(--ccp-radius-m);
+  font-size:        0.8125rem;
+  line-height:      1.6;
+
+  code {
+    color:            inherit;
+    background-color: transparent;
+    padding:          0;
+    border-radius:    0;
+  }
+}
+
+// Expressive Code (--ec-*) accent → CCP blue
+:root {
+  --ec-frm-edActTabIndTopCol: var(--ccp-brand);
+}
+
+
+// ── 11. Tables ──────────────────────────────────────────────
+
+.table {
+  font-size: 0.875rem;
+
+  thead th {
+    font-weight: 600;
+    color:       var(--ccp-gray-900);
+    border-bottom: 2px solid var(--ccp-border);
+  }
+
+  td, th { border-color: var(--ccp-border); }
+}
+
+
+// ── 11b. Docs content prose ─────────────────────────────────
+// The Doks base styles often inherit or reset to 1rem for article content.
+// Lock all prose text to 0.875rem (14px) to match the table font-size.
+// Headings are unaffected — Bootstrap applies their sizes via explicit
+// rules derived from $h1–$h6-font-size in _variables-custom.scss.
+
+.content {
+  font-size: 0.875rem;
+
+  p, li, dt, dd, blockquote, figcaption, caption {
+    font-size: 0.875rem;
+  }
+}
+
+
+// ── 12. Page nav (prev / next) ──────────────────────────────
+// Doks renders .page-nav as a flex row of two .card.w-100 elements.
+// max-width constrains each card even when width:100% is set via w-100.
+// .text-end is the "next" card — push it to the far right with margin-left:auto.
+
+.page-nav {
+  gap: 0.5rem;
+
+  > .m-2 { display: none; }   // gap replaces the inline spacer div
+
+  .card {
+    max-width: 260px;
+
+    &.text-end { margin-left: auto; }  // next → right side
+  }
+}
+
+
+// ── 12b. Footer ─────────────────────────────────────────────
+
+footer.footer {
+  background-color: var(--ccp-surface-card);
+  border-top:       1px solid var(--ccp-border);
+  padding-top:      1.25rem;
+  padding-bottom:   1.25rem;
+  font-size:        0.875rem;
+  color:            var(--ccp-gray-700);
+
+  a {
+    color:           var(--ccp-gray-700);
+    text-decoration: none;
+    &:hover { color: var(--ccp-brand); }
+  }
+}
+
+// ── 14. Search ──────────────────────────────────────────────
+
+// Search modal trigger button
+.DocSearch-Button, .search-form input {
+  border-radius: var(--ccp-radius-m) !important;
+  font-family:   var(--ccp-font);
+}
+
+.is-search, .form-control.is-search {
+  background-color: var(--ccp-surface-card);
+  border:           1px solid var(--ccp-border);
+  border-radius:    var(--ccp-radius-m);
+  font-size:        0.875rem;
+  color:            var(--ccp-gray-900);
+
+  &:focus {
+    border-color: var(--ccp-brand);
+    box-shadow:   0 0 0 2px rgba(36, 109, 183, .2);
+  }
+}
+
+
+// ── 15. Badges / Pills ──────────────────────────────────────
+
+.badge {
+  font-weight:   600;
+  border-radius: var(--ccp-radius-badge, 9px);
+  font-size:     0.75rem;
+}
+
+.badge.bg-primary, .badge-primary { background-color: var(--ccp-brand) !important; }
+
+
+// ── 16. Miscellaneous ───────────────────────────────────────
+
+// Section / divider line
+hr {
+  border-color:   var(--ccp-border);
+  border-top-width: 1px;
+  opacity: 1;
+}
+
+// Keyboard shortcut
+kbd {
+  background-color: var(--ccp-gray-100);
+  color:            var(--ccp-gray-900);
+  border:           1px solid var(--ccp-border);
+  border-radius:    var(--ccp-radius-xs);
+  font-size:        0.75rem;
+}
+
+// Smooth scroll snapping for fixed topbar
+html {
+  scroll-padding-top: calc(var(--ccp-topbar-h) + 1rem);
+}
+
+
+// ── 17. Dark mode overrides ─────────────────────────────────
+// Bootstrap 5 dark mode is applied via [data-bs-theme="dark"]
+// on <html>. Override all CCP tokens for dark surfaces.
+
+[data-bs-theme="dark"] {
+  --ccp-surface-page:    #242526;
+  --ccp-surface-card:    #3a3b3c;
+  --ccp-surface-nav:     #3a3b3c;
+  --ccp-surface-topbar:  #3a3b3c;
+  --ccp-border:          #4a4d54;
+  --ccp-gray-900:        #f5f5f5;
+  --ccp-gray-700:        #b0b3bb;
+  --ccp-brand:           #5ac8f5;
+  --ccp-brand-hover:     #7bd3f7;
+
+  // Ribbon backgrounds (dark)
+  --ccp-info-bkg:        #002c3d;
+  --ccp-success-bkg:     #064117;
+  --ccp-error-bkg:       #4b0606;
+  --ccp-warning-bkg:     #505006;
+
+  body { background-color: #242526; color: #f5f5f5; }
+
+  header.navbar {
+    background-color: #3a3b3c;
+    border-bottom-color: #4a4d54;
+    box-shadow: none;
+  }
+
+  // Logo keeps its own brand colors (#00AAEB blue + #FFB400 yellow) —
+  // they read well on dark surfaces, so no filter needed.
+  .navbar-brand { filter: none; }
+
+  // Nav links: light text on dark navbar
+  .navbar .nav-link {
+    color: #b0b3bb;
+    &:hover, &:focus { color: #5ac8f5; }
+    &.active          { color: #5ac8f5; font-weight: 600; }
+  }
+
+  .navbar .btn-link {
+    color: #b0b3bb;
+    &:hover { color: #5ac8f5; }
+  }
+
+  #buttonColorMode svg { stroke: #b0b3bb; }
+  #searchToggleDesktop svg,
+  #searchToggleMobile svg { stroke: #5ac8f5; }
+
+  .docs-sidebar { background-color: #3a3b3c !important; }
+
+  .docs-links {
+    a, a.docs-link, .btn-toggle-nav a {
+      color: #b0b3bb;
+      &:hover { color: #5ac8f5; background-color: rgba(90,200,245,.06); }
+      &.active, &[aria-current="page"] {
+        color: #5ac8f5;
+        border-left-color: #5ac8f5;
+        background-color: rgba(90,200,245,.08);
+      }
+    }
+
+    details > summary, h3, .h3 {
+      color: #5ac8f5;
+    }
+  }
+
+  .card {
+    background-color: #3a3b3c;
+    border-color:     #4a4d54;
+  }
+
+  code {
+    background-color: rgba(90, 200, 245, .10);
+    color:            #5ac8f5;
+  }
+
+  pre {
+    background-color: #1a1b1c;
+    border-color:     #4a4d54;
+  }
+
+  .alert-primary, .alert-info, .alert-doks {
+    background-color: #002c3d;
+    color: #f5f5f5;
+    a { color: #5ac8f5; }
+  }
+
+  .alert-success {
+    background-color: #064117;
+    color: #f5f5f5;
+  }
+
+  .alert-warning {
+    background-color: #505006;
+    color: #f5f5f5;
+  }
+
+  .alert-danger {
+    background-color: #4b0606;
+    color: #f5f5f5;
+  }
+
+  footer.footer {
+    background-color: #3a3b3c;
+    border-top-color: #4a4d54;
+    color:            #b0b3bb;
+    a { color: #b0b3bb; &:hover { color: #5ac8f5; } }
+  }
+
+  hr { border-color: #4a4d54; }
+
+  kbd {
+    background-color: #3a3b3c;
+    color:            #f5f5f5;
+    border-color:     #4a4d54;
+  }
+
+  .section-features .card {
+    background-color: #3a3b3c;
+    border-color:     #4a4d54;
+    h2 { color: var(--ccp-brand-hover); }
+    p  { color: #b0b3bb; }
+  }
+}
+
+
+// ── 18. Home page hero ──────────────────────────────────────v
+// Overrides the .section hero block from layouts/home.html
+
+body.home {
+  // ── Centered-cards layout ────────────────────────────────────
+  // body is already display:flex / flex-direction:column / min-height:100dvh.
+  // Hero (.wrap) takes its natural height at the top.
+  // Cards (.section-features) get flex:1 and center their content in all
+  // remaining space between the hero bottom and the footer top.
+
+  > .wrap {                      // contains .content > .container > .ccp-hero
+    flex: 0 0 auto;              // natural height — does not grow
+  }
+
+  > .section-features {          // the four product cards
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem 0;
+  }
+
+  // Footer sits right after section-features (section-features consumed
+  // all remaining space, so footer lands at the very bottom).
+  > footer.footer { margin-top: 0; }
+
+  // ── Hero: white card surface ─────────────────────────────────
+  .ccp-hero {
+    text-align:       center;
+    padding:          8rem 1rem 1rem;
+
+    h1 {
+      font-size:     1.75rem;
+      font-weight:   600;
+      color:         var(--ccp-brand);
+      margin-bottom: 0.5rem;
+    }
+
+    .lead {
+      font-size:   0.9375rem;
+      color:       var(--ccp-gray-700);
+      max-width:   560px;
+      margin:      0 auto 1.25rem;
+      line-height: 1.55;
+    }
+  }
+
+  // ── Feature cards ───────────────────────────────────────────
+  .section-features .card {
+    text-align:    left;
+    border-radius: var(--ccp-radius-m);
+    transition:    box-shadow .2s ease, border-color .2s ease;
+    margin-top: 0;
+
+    &:hover {
+      border-color: rgba(36,109,183,.4);
+      box-shadow:   var(--ccp-shadow-nav);
+    }
+  }
+
+  // Section footer banner (sectionFooter param)
+  .section.bg-light {
+    background-color: var(--ccp-gray-100) !important;
+    border-top:       1px solid var(--ccp-border);
+  }
+}
+
+[data-bs-theme="dark"] body.home,
+body.home[data-bs-theme="dark"] {
+  .ccp-hero {
+    border-top-color:    #4a4d54;
+    border-bottom-color: #4a4d54;
+    h1   { color: #5ac8f5; }
+    .lead { color: #b0b3bb; }
+  }
+  .section.bg-light { background-color: #242526 !important; }
+}

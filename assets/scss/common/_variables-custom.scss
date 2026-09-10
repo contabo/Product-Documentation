@@ -1,1 +1,111 @@
-// Put your custom SCSS variables here
+// ============================================================
+// CCP (Customer Control Panel) Design Token Overrides
+// Maps Contabo brand tokens onto Bootstrap 5 Sass variables.
+// These are resolved before Bootstrap compiles, so they
+// propagate through all generated utility classes and components.
+// ============================================================
+
+// ── Brand / Semantic palette ─────────────────────────────────
+$primary:   #246db7; // CCP blue-600 — buttons, links, nav active
+$secondary: #6f798b; // CCP gray-700 — secondary text, muted elements
+$success:   #3fd188; // CCP green-400 — success states
+$info:      #246db7; // shares primary
+$warning:   #ffb400; // CCP yellow-400 — warning states
+$danger:    #e65858; // CCP red-600 — error / destructive
+
+// ── Typography ───────────────────────────────────────────────
+$font-family-sans-serif: "Inter", system-ui, -apple-system,
+  BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+$font-family-monospace:  ui-monospace, SFMono-Regular, Menlo, Monaco,
+  Consolas, "Liberation Mono", "Courier New", monospace;
+
+$font-size-base:   0.875rem;  // 14px — CCP body size
+$font-size-lg:     1rem;      // 16px
+$font-size-sm:     0.8125rem; // 13px — hints / small labels
+
+$font-weight-light:    300;
+$font-weight-normal:   400;
+$font-weight-medium:   500;
+$font-weight-semibold: 600;
+$font-weight-bold:     600; // CCP uses semibold as "bold"
+
+$headings-font-weight:  600;
+$headings-line-height:  1.2;
+$line-height-base:      1.5;
+
+// Heading scale (Inter at CCP proportions)
+$h1-font-size: 1.5rem;    // 24px
+$h2-font-size: 1.25rem;   // 20px
+$h3-font-size: 1.125rem;  // 18px
+$h4-font-size: 1rem;      // 16px
+$h5-font-size: 0.875rem;  // 14px
+$h6-font-size: 0.75rem;   // 12px
+
+// ── Surface colors ───────────────────────────────────────────
+$body-bg:    #f2f3f7; // CCP gray-100 — page / content-area background
+$body-color: #414752; // CCP gray-900 — primary text
+
+// ── Link colors ──────────────────────────────────────────────
+$link-color:            #246db7;
+$link-hover-color:      #349fe4; // CCP blue-400
+$link-decoration:       none;
+$link-hover-decoration: underline;
+
+// ── Borders ──────────────────────────────────────────────────
+$border-color:  #e7ecf1; // CCP gray-200
+$border-radius: 0.5rem;  // 8px  — cards, dropdowns (CCP radius-m)
+$border-radius-sm: 0.3125rem; // 5px  — inputs  (CCP radius-s)
+$border-radius-lg: 0.75rem;   // 12px — modals (CCP radius-l)
+$border-radius-pill: 1.5rem;  // 24px — buttons (CCP radius-pill)
+
+// ── Cards ────────────────────────────────────────────────────
+$card-bg:                  #ffffff;
+$card-border-color:        #e7ecf1; // CCP gray-200
+$card-border-radius:       0.5rem;  // 8px
+$card-inner-border-radius: calc(0.5rem - 1px);
+$card-cap-bg:              #ffffff;
+$card-spacer-x:            1rem;    // 16px
+$card-spacer-y:            1rem;
+
+// ── Inputs / Forms ───────────────────────────────────────────
+$input-bg:                  #ffffff;
+$input-border-color:        #acb6c5; // CCP gray-500 (form input resting)
+$input-border-radius:       0.3125rem;
+$input-focus-border-color:  #1478de;
+$input-focus-box-shadow:    0 0 0 0.2rem rgba(36, 109, 183, 0.25);
+$input-placeholder-color:   #8890af; // CCP gray-450
+
+// ── Navbar (light mode) ──────────────────────────────────────
+$navbar-light-color:            rgba(65, 71, 82, 0.75);  // CCP gray-900 @75%
+$navbar-light-hover-color:      #246db7;
+$navbar-light-active-color:     #246db7;
+$navbar-light-disabled-color:   rgba(65, 71, 82, 0.30);
+$navbar-light-toggler-icon-bg:  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2865%2C71%2C82%2C0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+$navbar-light-toggler-border-color: rgba(65, 71, 82, 0.15);
+
+// ── Tables ───────────────────────────────────────────────────
+$table-striped-bg-factor: 0.03;
+$table-border-color:       #e7ecf1;
+
+// ── Alerts (map to CCP ribbon palette) ───────────────────────
+$alert-border-radius: 0.5rem;
+$alert-border-width:  0;      // will use left-border only via _custom.scss
+$alert-padding-x:     0.75rem;
+$alert-padding-y:     0.5rem;
+
+// ── Code ─────────────────────────────────────────────────────
+$code-color:         #246db7;
+$pre-bg:             #f9f9fb; // CCP gray-50
+
+// ── Focus ring ───────────────────────────────────────────────
+$focus-ring-width:   0.125rem; // 2px — CCP focus-ring-width
+$focus-ring-opacity: 1;
+$focus-ring-color:   rgba(36, 109, 183, 0.3);
+
+// ── Box shadow ───────────────────────────────────────────────
+$box-shadow-sm: 0px 3px 8px rgba(0, 0, 0, 0.05),
+                0px 0px 3px rgba(0, 0, 0, 0.05),
+                0px 1px 3px rgba(0, 0, 0, 0.05); // CCP elevation-200
+$box-shadow:    0px 2px 2.5px rgba(0, 0, 0, 0.15),
+                0px 10px 12px rgba(0, 0, 0, 0.2),
+                0px 0px 0.5px rgba(0, 0, 0, 0.1); // CCP elevation-500
