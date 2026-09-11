@@ -606,6 +606,9 @@ html {
 
   body { background-color: #242526; color: #f5f5f5; }
 
+  // Links: hover matches active (#5ac8f5) — no lighter shift on dark bg
+  .page-links a:hover { color: var(--ccp-brand); }
+
   header.navbar {
     background-color: #3a3b3c;
     border-bottom-color: #4a4d54;
@@ -786,4 +789,188 @@ body.home[data-bs-theme="dark"] {
     .lead { color: #b0b3bb; }
   }
   .section.bg-light { background-color: #242526 !important; }
+}
+
+
+// ── 19. Search modal ────────────────────────────────────────
+// Doks uses Bootstrap's #searchModal with .search-text, .search-result,
+// and .modal-footer keyboard hints. Override to match CCP palette & sizing.
+
+#searchModal {
+
+  // ── Container ───────────────────────────────────────────
+  .modal-content {
+    font-family:   var(--ccp-font);
+    border:        1px solid var(--ccp-border);
+    border-radius: var(--ccp-radius-m);
+    box-shadow:    var(--ccp-shadow-card);
+    overflow:      hidden;
+    font-size:     0.875rem;
+  }
+
+  // ── Header (holds the search input) ─────────────────────
+  .modal-header {
+    border-bottom-color: var(--ccp-border);
+    padding:             0.625rem 1rem;
+  }
+
+  // Search input — override form-control-lg (which defaults to 1.125rem)
+  .search-text {
+    font-family:      var(--ccp-font);
+    font-size:        0.875rem;
+    border-color:     var(--ccp-border);
+    border-radius:    var(--ccp-radius-m);
+    color:            var(--ccp-gray-900);
+    background-color: var(--ccp-surface-card);
+    padding:          0.4rem 0.75rem;
+
+    &:focus {
+      border-color: var(--ccp-brand);
+      box-shadow:   0 0 0 2px rgba(36, 109, 183, .2);
+      outline:      none;
+    }
+
+    &::placeholder { color: var(--ccp-gray-500); font-size: 0.875rem; }
+  }
+
+  // ── Body ────────────────────────────────────────────────
+  .modal-body {
+    padding:   0.625rem 1rem;
+    font-size: 0.875rem;
+
+    p.message {
+      font-size: 0.8125rem;
+      color:     var(--ccp-gray-700);
+    }
+  }
+
+  // ── Result items ────────────────────────────────────────
+  .search-result {
+    margin-bottom: 0.25rem;
+
+    .card {
+      border:           1px solid var(--ccp-border);
+      border-radius:    var(--ccp-radius-m);
+      background-color: var(--ccp-surface-card);
+      transition:       background-color .1s ease, border-color .1s ease;
+    }
+
+    // Result title (page name rendered as h2 by Doks)
+    h2, .h2 {
+      font-size:     0.875rem;
+      font-weight:   600;
+      color:         var(--ccp-gray-900);
+      margin-bottom: 0.125rem;
+    }
+
+    // Content excerpt — headings inside a snippet should not exceed h3 scale.
+    // h1/h2 from page content are demoted; h3+ shrink proportionally.
+    .content {
+      h1, h2      { font-size: 1rem;      font-weight: 600; margin: 0.25rem 0; }
+      h3          { font-size: 0.9375rem; font-weight: 600; margin: 0.25rem 0; }
+      h4, h5, h6  { font-size: 0.875rem;  font-weight: 600; margin: 0.25rem 0; }
+    }
+
+    .content p {
+      font-size:   0.8125rem;
+      color:       var(--ccp-gray-700);
+      line-height: 1.5;
+    }
+
+    .submitted {
+      font-size: 0.75rem;
+      color:     var(--ccp-gray-500);
+    }
+
+    // Hover / keyboard-selected: CCP blue tint (mirrors sidebar active)
+    &:hover .card,
+    &.selected .card {
+      background-color: rgba(36, 109, 183, .08);
+      border-color:     rgba(36, 109, 183, .35);
+      color:            inherit;   // do NOT flip to white
+
+      h2, .h2 { color: var(--ccp-brand); }
+      .content a { color: var(--ccp-brand); text-decoration: underline; }
+    }
+  }
+
+  // ── Footer (keyboard shortcut hints) ────────────────────
+  .modal-footer {
+    border-top-color: var(--ccp-border);
+    padding:          0.375rem 1rem;
+    font-size:        0.75rem;
+    color:            var(--ccp-gray-700);
+
+    .DocSearch-Label { color: var(--ccp-gray-700); }
+
+    kbd {
+      font-size:        0.6875rem;
+      background-color: var(--ccp-gray-100);
+      border:           1px solid var(--ccp-border);
+      color:            var(--ccp-gray-900);
+      border-radius:    var(--ccp-radius-xs);
+      padding:          0.1em 0.3em;
+    }
+  }
+
+  // ── Dark mode ───────────────────────────────────────────
+  [data-bs-theme="dark"] & {
+
+    .modal-content {
+      background-color: #3a3b3c;
+      border-color:     #4a4d54;
+    }
+
+    .modal-header { border-bottom-color: #4a4d54; }
+
+    .search-text {
+      background-color: #242526;
+      border-color:     #4a4d54;
+      color:            #f5f5f5;
+
+      &:focus {
+        border-color: #5ac8f5;
+        box-shadow:   0 0 0 2px rgba(90, 200, 245, .2);
+      }
+
+      &::placeholder { color: #6f798b; }
+    }
+
+    .modal-body p.message { color: #b0b3bb; }
+
+    .search-result {
+      .card {
+        background-color: #3a3b3c;
+        border-color:     #4a4d54;
+      }
+
+      h2, .h2   { color: #f5f5f5; }
+      .content p { color: #b0b3bb; }
+      .submitted { color: #6f798b; }
+
+      &:hover .card,
+      &.selected .card {
+        background-color: rgba(90, 200, 245, .10);
+        border-color:     rgba(90, 200, 245, .35);
+        color:            inherit;
+
+        h2, .h2 { color: #5ac8f5; }
+        .content p { color: #f5f5f5; }
+        .content a { color: #5ac8f5; }
+      }
+    }
+
+    .modal-footer {
+      border-top-color: #4a4d54;
+      color:            #b0b3bb;
+
+      .DocSearch-Label { color: #b0b3bb; }
+
+      kbd {
+        background-color: #242526;
+        border-color:     #4a4d54;
+        color:            #f5f5f5;
+      }
+    }
+  }
 }
